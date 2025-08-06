@@ -155,7 +155,7 @@ export default function WalletLookup() {
             <div className="bg-blue-50 border border-gray-600 rounded-xl p-8 text-center">
               
               <h3 className="mt-3 text-lg font-medium text-gray-800">No NFTs Found</h3>
-              <p className="mt-1 text-sm text-gray-600">This wallet doesn't contain any NFTs.</p>
+              <p className="mt-1 text-sm text-gray-600">This wallet doesn&#39;t contain any NFTs.</p>
             </div>
           )}
         </div>

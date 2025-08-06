@@ -12,6 +12,7 @@ export async function getNearBalance(accountId: string): Promise<string> {
     request_type: "view_account",
     account_id: accountId,
     finality: "final",
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   })) as any as AccountView;
 
   const formatted = utils.format.formatNearAmount(res.amount, 5);
