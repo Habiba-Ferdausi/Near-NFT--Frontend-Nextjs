@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { getNearBalance } from "@/lib/near";
 import { useWallet } from "@/app/providers/WalletProvider";
+import { LiaLinkSolid } from "react-icons/lia";
+import { MdAccountBalanceWallet } from "react-icons/md";
 
 export default function ConnectBar() {
   const { accountId, signIn, signOut } = useWallet();
@@ -36,35 +38,54 @@ export default function ConnectBar() {
   }, [accountId]);
 
   return (
-    <div className="flex items-center justify-between gap-4 p-4 border rounded-md shadow-sm max-w-xl mx-auto bg-white">
-      {!accountId ? (
-        <button
-          onClick={signIn}
-          className="px-4 py-2 text-white bg-black rounded hover:opacity-90 transition"
-        >
-          Connect NEAR Wallet
-        </button>
-      ) : (
-        <>
-          <div className="text-sm flex-1">
-            <div><strong>Connected:</strong> {accountId}</div>
-            <div className="opacity-80">
-              <strong>Balance:</strong>
-              {loading
-                ? "Loading..."
-                : error
-                ? <span className="text-red-500">{error}</span>
-                : balance || "—"}
+    <div className="backdrop-blur-md rounded-3xl p-[1px] shadow-xl">
+      <div className="bg-blue-50/50 rounded-[23px] p-6">
+        {!accountId ? (
+          <button
+            onClick={signIn}
+            className="w-full py-4 px-8 bg-gradient-to-r from-blue-400 to-purple-500 hover:from-blue-500 hover:to-purple-600 rounded-2xl text-white font-semibold text-lg shadow-lg transition-all duration-300 hover:shadow-xl flex items-center justify-center gap-3"
+          >
+            <div className="relative">
+              <div className="absolute inset-0 bg-white/20 rounded-full animate-ping"></div>
+            <LiaLinkSolid size={32}/>
+            </div>
+            Connect NEAR Wallet
+          </button>
+        ) : (
+          <div className="space-y-5">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+               
+                <MdAccountBalanceWallet size={32} color="purple"/>
+                <div>
+                  <p className="text-xs text-gray-700 font-mono">NEAR ACCOUNT</p>
+                  <p className="font-medium text-black text-lg truncate max-w-[200px]">{accountId}</p>
+                </div>
+              </div>
+              <button
+                onClick={signOut}
+                className="text-sm text-gray-600 hover:text-gray-800  p-2 rounded-lg border"
+              >
+                Sign Out
+              </button>
+            </div>
+
+            <div className="bg-blue-100 rounded-2xl p-5">
+              <p className="text-sm text-gray-800 mb-2 font-mono">BALANCE</p>
+              <div className="flex items-center justify-between">
+                {loading ? (
+                  <div className="h-8 w-32 bg-gradient-to-r from-gray-800/30 to-gray-700/30 rounded-lg animate-pulse"></div>
+                ) : error ? (
+                  <p className="text-red-400 text-sm">{error}</p>
+                ) : (
+                  <p className="text-3xl font-bold text-blue-800">{balance || "0"}</p>
+                )}
+              
+              </div>
             </div>
           </div>
-          <button
-            onClick={signOut}
-            className="px-4 py-2 text-sm border rounded hover:bg-gray-100 transition"
-          >
-            Sign Out
-          </button>
-        </>
-      )}
+        )}
+      </div>
     </div>
   );
 }

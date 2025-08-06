@@ -16,3 +16,11 @@ export type WalletContextType = {
   signIn: () => void;
   signOut: () => Promise<void>;
 };
+
+export type NFT = {
+  token_id: string;
+  title?: string;
+  description?: string;
+  media?: string;
+  contractId: string;
+};
