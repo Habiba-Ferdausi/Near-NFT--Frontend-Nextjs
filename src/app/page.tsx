@@ -1,5 +1,6 @@
 import ConnectBar from "@/components/ConnectBar";
 import WalletProvider from "./providers/WalletProvider";
+import WalletLookup from "@/components/WalletLookup";
 
 
 export default function Page() {
@@ -11,7 +12,7 @@ export default function Page() {
           Connect a NEAR wallet, see its balance, or manually enter a wallet ID to fetch NFTs.
         </p>
         <div className="mt-4"><ConnectBar /></div>
-       
+       <WalletLookup/>
       </main>
     </WalletProvider>
   );

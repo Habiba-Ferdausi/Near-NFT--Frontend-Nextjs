@@ -49,7 +49,7 @@ export default function ConnectBar() {
           <div className="text-sm flex-1">
             <div><strong>Connected:</strong> {accountId}</div>
             <div className="opacity-80">
-              <strong>Balance:</strong>{" "}
+              <strong>Balance:</strong>
               {loading
                 ? "Loading..."
                 : error
